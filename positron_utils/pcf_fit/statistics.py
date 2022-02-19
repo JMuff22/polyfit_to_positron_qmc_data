@@ -70,8 +70,12 @@ def cross_validation_error(fitset,gex,r,args):
                 except:
                     print("Deg: {}, itrain: {}, ival:{} ".format(i,itraining,ivalidation))
                     print(error)
-        cverror.append(sum(mse)/len(mse))
-        cverror2.append(sum(mse2)/len(mse2))
+        if len(mse) ==0:
+            cverror.append(sum(mse)/1)
+            cverror2.append(sum(mse2)/1)
+        else:
+            cverror.append(sum(mse)/len(mse))
+            cverror2.append(sum(mse2)/len(mse2))
         
     return cverror,cverror2
         
