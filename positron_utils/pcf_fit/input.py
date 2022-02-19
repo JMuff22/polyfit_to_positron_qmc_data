@@ -66,7 +66,7 @@ def get_input(args):
     else:
         print("-------------------------------------------------------------------------")
         print("WARNING: You are using the weights-file "+args.weight_file+".")
-        print("         the total weigth should be # of twists X # simulations/twist. ")
+        print("         the total weight should be the number of twists multiplied by number simulations/twist. ")
         print("-------------------------------------------------------------------------")
         if(args.wtot<0):
             sys.exit("You must give total weight when a weight file is present")
