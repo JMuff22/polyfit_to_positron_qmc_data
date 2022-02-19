@@ -68,7 +68,7 @@ def get_args():
     
     args_parser.add_argument(
         '--plot',
-        help='Plot PCF(s)?',
+        help='Plot PCF(s)',
         required=False,
         type=int,
         default=0
@@ -322,7 +322,7 @@ def main():
         fits,logfits,glog,rex,opt_pol_coeff=do_fit(r,r_range,p_degs,gex,args)
 
         # Fitting statistics and plotting. NOTE! plotting should be done in separate function
-        fe,fsqe,cve,cve2=fit_statistics(args,fits,gex,r,r_range)    
+        fe,fsqe,cve,cve2=fit_statistics(args,fits,gex,r,r_range)
     
         # Get g(0) values and statistics
         gzeros=fits[0,:,:]
