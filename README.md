@@ -41,6 +41,15 @@ Some extra things about the program
 6. ./analyse.sh ../examples/silicon_SJ 8 0.270107093552E+03 4.4 5 0.000155019074496
 * *I get lifetime of 238.8ps with the 5:th-order polynomial
 
+
+#### Script descriptions
+
+Validate.sh
+Usage:
+    ./$0 <folder> <fit_range-min> <fit_range-max> <fit_range-dx> <max-pol>
+
+  
+
 ## Program background and theory
 
 ### Background
