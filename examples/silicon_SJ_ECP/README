@@ -2,10 +2,72 @@ Results:
 
 `./validate.sh ../examples/silicon_SJ_ECP/ 2 8 0.5 7`
 
+ Cross-validated mean-square errors on the fits in the selected ranges:
+ 
+          |      3      |     5      |     7      |
+--------------------------------------------------
+ 2.0 Bohr |   0.015385  |  0.014113  |  0.014167  |
+ 2.5 Bohr |   0.018034  | *0.014110* |  0.014146  |
+ 3.0 Bohr |   0.019414  |  0.014112  |  0.014121  |
+ 3.5 Bohr |   0.017141  |  0.014539  |  0.014116  |
+ 4.0 Bohr |   0.014859  |  0.016545  |  0.014180  |
+ 4.5 Bohr |   0.022713  |  0.020542  |  0.014253  |
+ 5.0 Bohr |   0.055414  |  0.025170  |  0.014172  |
+ 5.5 Bohr |   0.132354  |  0.028324  |  0.014133  |
+ 6.0 Bohr |   0.285284  |  0.028773  |  0.014819  |
+ 6.5 Bohr |   0.569815  |  0.026777  |  0.016938  |
+ 7.0 Bohr |   1.086155  |  0.023707  |  0.020624  |
+ 7.5 Bohr |   1.485263  |  0.022171  |  0.022840  |
+--------------------------------------------------
+All done.
+
+
 Shows a fit range if 2.5 bohr with polynomial of 5 to be best.
 
-`./analyse.sh ../examples/silicon_SJ_ECP 192 2.1608567484189534E+03 2.5 5` 
+`./analyse.sh ../examples/silicon_SJ_ECP 192 2.1608567484189534E+03 2.5 5 1`
+-------------------------------------------------------------------------
+WARNING: You are using the weights-file ../examples/silicon_SJ_ECP/weights.txt.
+         the total weigth should be # of twists X # simulations/twist. 
+-------------------------------------------------------------------------
+ 
+#################################################
+# Polynomial fit of positron-electron PCF       #
+#################################################
+ 
+System:
+-------
+Volume                 : 2160.8567484189534 
+Number of electrons    : 192.0
+Is metal (0=no, 1=yes)?: 0 
+Twist averaged data, weight file : ../examples/silicon_SJ_ECP/weights.txt
+ 
+Loaded: 
+../examples/silicon_SJ_ECP/gvmc_1.npy
+../examples/silicon_SJ_ECP/gdmc_1.npy
+../examples/silicon_SJ_ECP/r_1.npy
+Shape of PCF files: [16,(5000,)]
+ 
+Optimization: 
+-------
+Fitting range             : 2.5
+Maxmimum polynomial order : 5
+Optimization method       :lm
+Weighting of the residuals applied
 
+ FITTING RESULTS:
+
+Fitting range: 2.5 Bohr
+========================================
+Polynomial degree: 3
+Mean squared error: 0.01034, cross-validation MSE: 0.07449
+----------------------------------------
+PCF           : 0.8264
+STD           : 0.0011
+----------------------------------------
+Lifetime (ps) : 270.7108
+STD           : 0.3732
+ 
+========================================
 Polynomial degree: 5
 Mean squared error: 0.00640, cross-validation MSE: 0.07056
 --> BEST
@@ -15,6 +77,9 @@ STD           : 0.0011
 ----------------------------------------
 Lifetime (ps) : 234.1341
 STD           : 0.2605
+ 
+1
+All done.
 
 Using the simulation cell volume found in the PCF expval datafile. For the ECP pseudopotential there are 192 electrons with 2 atoms per primitive cell using a 2x2x2 k-point grid. Core corrected with the default B15 fractional. 
 
