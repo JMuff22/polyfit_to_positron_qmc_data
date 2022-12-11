@@ -1,11 +1,32 @@
 import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib as mpl
+from pylab import cm
 from matplotlib.ticker import MultipleLocator,FormatStrFormatter,MaxNLocator
+
+from cycler import cycler
+line_cycler   = (cycler(color=["#E69F00", "#56B4E9", "#009E73", "#0072B2", "#D55E00", "#CC79A7", "#F0E442"]) +
+                 cycler(linestyle=["-", "--", "-.", ":", "-", "--", "-."]))
+marker_cycler = (cycler(color=["#E69F00", "#56B4E9", "#009E73", "#0072B2", "#D55E00", "#CC79A7", "#F0E442"]) +
+                 cycler(linestyle=["none", "none", "none", "none", "none", "none", "none"]) +
+                 cycler(marker=["4", "2", "3", "1", "+", "x", "."]))
+
+
+plt.rc("axes", prop_cycle=line_cycler)
+plt.rc("text", usetex=True)
+plt.rc("text.latex", preamble=r"\usepackage{newpxtext}\usepackage{newpxmath}\usepackage{commath}\usepackage{mathtools}")
+plt.rc("font", family="serif", size=18.)
+plt.rc("savefig", dpi=200)
+# plt.rc("legend", loc="best", fontsize="medium", fancybox=True, framealpha=0.5)
+# plt.rc("lines", linewidth=2.5, markersize=10, markeredgewidth=2.5)
 
 mpl.rcParams['pdf.fonttype'] = 42
 mpl.rcParams['ps.fonttype'] = 42
 mpl.rcParams['font.family'] = 'Times New Roman'
+plt.rcParams['font.size'] = 18
+plt.rcParams['axes.linewidth'] = 2
+
+# colors = cm.get_cmap('Set1', 3)
 
 def plot_crossval_results(MSE,args):
     p_degs=np.arange(args.min_pol,args.max_pol+1,2)
@@ -15,9 +36,10 @@ def plot_crossval_results(MSE,args):
 
     for i in range(Nd):
         plt.plot(rfit,MSE[:,i],'-*',label='Polynomial degree {}'.format(p_degs[i]))
-        plt.rc('text', usetex=True)
-        plt.rc('font', family='serif')
-    plt.xlabel('Fitting range')
+    
+    plt.title('Helium Core Silicon ccECP Emin')
+    plt.xlabel('Fitting range (bohr)')
+    plt.ylabel(r'$E_{MSE}^{CV}$ (arbitrary units)')
     plt.legend()
     
 
@@ -27,16 +49,16 @@ def plot_results(args,fits,logfits,gex,glog,r,rex,popt):
     
     def _plot_main(fignum,r,imax,g,f,Nd,p_degs,Npcf):
         plt.figure(figsize=(10,6))
-        plt.rc('text', usetex=True)
-        plt.rc('font', family='serif')
         plt.plot(r,g,'k-',linewidth=2,label='Average extrapolated PCF')
-        for i in range(N_degs):
-            plt.plot(r[:imax],f[:imax,i],label=str(p_degs[i])+'-order pol.')
+        # for i in range(N_degs):
+        #     plt.plot(r[:imax],f[:imax,i],label=str(p_degs[i])+'-order pol.')
+        plt.plot(r[:imax],f[:imax,1],label=str(p_degs[1])+'th-order pol.')
         plt.grid()
         plt.xlabel('Positron-electron distance (Bohr)')
         plt.ylabel('Pair correlation function')
-        plt.title('Graphs of {} averaged fits and pcfs for Variance Minimized SJ Wavefunction'.format(Npcf))
-        plt.axvline(x=4.4,color='r',linestyle='dotted',label="Nearest-neighbour distance")
+        # plt.title('Graphs of {} averaged fits and pcfs for Variance Minimized SJ Wavefunction'.format(Npcf))
+        plt.title('Helium Core, ccECP with Emin')
+        # plt.axvline(x=4.4,color='r',linestyle='dotted',label="Nearest-neighbour distance")
         plt.legend()
 
     def _plot_twist(Nx,Ny,Npcf,Nd,rex,r,imax,glog,logfits):
