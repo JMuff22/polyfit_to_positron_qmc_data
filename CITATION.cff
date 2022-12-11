@@ -1,0 +1,12 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+authors:
+  - family-names: Simula
+    given-names: Kristoffer
+    orcid: https://orcid.org/0000-0002-6714-8427
+  - family-names: Muff
+    given-names: Jake
+title: "Polyfit to Positron QMC data"
+version: 0.1.8
+doi: https://doi.org/10.1103/PhysRevLett.129.166403
+date-released: 2021-01-10
